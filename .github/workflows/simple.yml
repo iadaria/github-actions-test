@@ -21,6 +21,8 @@ jobs:
   # Get-Location - родная команда для shell, но для команды - pwd указываем shell - bash
   run-windows-commands:
     runs-on: windows-latest
+    # job-ы запускаются параллельно, но мы с помощью needs эту запускаем после первой
+    needs: ["run-shell-command"]
     steps:
       - name: Directory PowerShell
         run: Get-Location
