@@ -1,11 +1,26 @@
 name: Actions Workfow
 
 on: 
-  # schedule:
-  #  - cron: "1 * * * *"
   # push:
+    # branches-ingore:   
+    # branches:
+    #   - master
+    #   - 'feature/*' # matches feature/featA, feature/featB, but not feature/feat/a
+    #   - 'feature/**' # feature/feat/a
+    # tags:
+    #tags-ignore:
+    #  - v1.*
+    # paths:
+    #    - '**.js'
+    #paths_ignore:
+    #  - 'docs/**'
+
   pull_request:
     types: [closed, assigned, opened, reopened]
+  repository_dispatch:
+    types: [build]
+  # schedule:
+  #  - cron: "1 * * * *"
 
 jobs:
   run-github-actions:

@@ -1,31 +1,31 @@
-name: Shell Commands
+name: Shell Commands 
 
 on: [pull_request]
 
 jobs:
   run-shell-command:
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - name: echo a string
-        run: echo "Hellow, World"
-      - name: multiline script
+        run: echo "Hello World"
+        timeout-minutes: 360 #max
+      - name: multiline script 
         run: |
-          node -v
-          npm -v
-      - name: python Command
+           node -v 
+           npm -v
+      - name: python Command 
         run: |
-          import platform
-          print(platform.processor())
+          import platform 
+          print
+          (platform.processor())
         shell: python
-  # Здесь мы добавляем другую среду выполненния для команды - Windows
-  # Get-Location - родная команда для shell, но для команды - pwd указываем shell - bash
-  run-windows-commands:
+        continue-on-error: true
+  run-windwos-commands:
     runs-on: windows-latest
-    # job-ы запускаются параллельно, но мы с помощью needs эту запускаем после первой
     needs: ["run-shell-command"]
     steps:
       - name: Directory PowerShell
-        run: Get-Location
-      - name: Directory Bash
-        run: pwd
-        shell: bash
+        run: Get-Location 
+      - name: Directory Bash 
+        run: pwd 
+        shell: bash 
